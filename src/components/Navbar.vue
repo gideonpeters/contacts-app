@@ -1,18 +1,20 @@
 <template>
-    <div class="" id="">
-        <nav class="navbar py-2 navbar-light bg-transparent">
+    <div>
+        <nav class="navbar sticky-top navbar-light bg-transparent">
             <div class="row align-items-center">
                 <div class="col-md-1 col-sm-2 ">
-                    <i class="mdi mdi-menu mt-2" @click="toggleSidebar"/>
+                    <div class="ml-3" @click="toggleSidebar">
+                        <i class="mdi mdi-menu" />
+                    </div>
                 </div>
-                <div class="col-md-3 col-sm-2">
-                    <div class="img mt-2"></div>
+                <div class="col-md-1 col-sm-2">
+                    <div class="img"></div>
                 </div>
-                <div class="col-md-2 col-sm-2">
-                    <router-link class="contact-brand mt-2" to="/">Contacts</router-link>
+                <div class="col-md-1 col-sm-2">
+                    <router-link tag="div" class="contact-brand pt-1" to="/">Contacts</router-link>
                 </div>
                 <div class="col-md-4 col-sm-3">
-                    <div class="form-group has-search ml-5">
+                    <div class="form-group has-search ml-4">
                         <i class="mdi mdi-magnify form-control-feedback ml-2"></i>
                         <input type="text" class="form-control py-4 mt-3 d-none d-md-block"  placeholder="Search">
                     </div>
@@ -34,28 +36,33 @@ export default {
 
 
 <style lang="scss" scoped>
-.mdi::before{
-    font-size: 24px;
-    opacity: 0.56;
-    z-index: 100;
-}
-
-.navbar-brand{
-    font-family: 'Product Sans',Arial,sans-serif;
+.mdi{
+    &::before{
+        font-size: 24px;
+        opacity: 0.56;
+        z-index: 200;
+    }
 }
 
 .has-search{
     .form-control {
         padding-left: 3.575rem;
-        width: 30rem !important;
+        min-width: 50rem !important;
+        min-height: 4rem;
         background: rgba(0,0,0,0.04);
-        border-radius: 15px, 15px, 0, 0 ;
+        border: none;
+        
+        &:focus{
+            border-radius: 0.25rem 0.25rem 0 0 ;
+            background: rgba(0,0,0,0);
+            outline: none;
+            box-shadow: 0px 1px 0 0.2rem rgba(233, 233, 233, 0.664);
+            border-color: none;
+        }
     }
-}
 
-.has-search {
     .form-control-feedback {
-        // margin-top: 1.2%;
+        margin-top: 3.2%;
         position: absolute;
         z-index: 2;
         display: inline-block;
@@ -72,20 +79,23 @@ export default {
     background-position: center, center;
     background-size: contain;
     background-repeat: no-repeat;
-    min-height: 40px;
-    min-width: 40px;
+    min-height: 44px;
+    min-width: 44px;
+    cursor: pointer;
+    margin-left: -50px;
 }
 
-.contact-brand{
+.contact-brand{   
     color: inherit;
     opacity: 0.56;
     display: inline-block;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 25px;
     line-height: normal;
-    padding-left: 5px;
+    // margin-right: 90px;
     position: relative;
     top: -1.5px;
-    vertical-align: middle;
+    margin-left: -37px;
+    cursor: pointer;
 }
 </style>
