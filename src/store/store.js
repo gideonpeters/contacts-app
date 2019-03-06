@@ -8,10 +8,14 @@ export const store = new Vuex.Store({
     state: {
         sidebarStatus: true,
         contacts: contacts,
+        showModal: true,
     },
     getters: {
         getSidebarStatus(state) {
             return state.sidebarStatus
+        },
+        getShowModalStatus(state) {
+            return state.showModal;
         },
         getContacts(state) {
             return state.contacts;
@@ -20,6 +24,9 @@ export const store = new Vuex.Store({
     mutations: {
         toggleSidebarStatus(state) {
             state.sidebarStatus = !state.sidebarStatus;
+        },
+        toggleModal(state) {
+            state.showModal = !state.showModal;
         }
     }
 });

@@ -1,6 +1,6 @@
 <template>
     <div class="page-wrapped">
-        <div class="row">
+        <div class="row justify-content-center">
             <transition name="">
                 <div class="col-lg-2 col-md-4" v-show="isSidebarVisible"> 
                     <sidebar />
@@ -12,15 +12,20 @@
                 </div> 
             </div>
         </div> 
+        <!-- <div class="modal">
+            <create-contact />
+        </div> -->
     </div>
 </template>
 
 <script>
-import Sidebar from './Sidebar.vue'
+import Sidebar from './Sidebar.vue';
+import CreateContact from './CreateContact.vue'
 
 export default {
     components: {
         Sidebar,
+        CreateContact,
     },
     computed: {
         isSidebarVisible() {
@@ -33,6 +38,12 @@ export default {
 <style lang="scss" scoped>
 .page-wrapped{
     overflow-x: hidden;
+}
+
+.modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .slide-leave-active,

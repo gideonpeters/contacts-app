@@ -9,7 +9,7 @@
                 <div class="col">Company</div>
                 <!-- <div class="col">Birthday</div> -->
             </div>
-            <div class="row tbody py-2 align-items-center" :style="{backgroundColor: selectedColor}" @mouseover="selection" @mouseleave="revertToNormal">
+            <div class="row tbody py-2 align-items-center" :style="{backgroundColor: selectedColor, borderLeft: selectedBorder}" @mouseover="selection" @mouseleave="revertToNormal">
                 <div class="col-1">
                     <div class="checkbox text-center" v-if="hovering === 1">
                         <i class="mdi mdi-24px mdi-check-box-outline" @click="selectedDiv" v-if="checked"></i>
@@ -24,7 +24,14 @@
                 </div>
                 <div class="col-3">gideonpeters85@gmail.com</div>
                 <div class="col-3">+2347089324817</div>
-                <div class="col-3">Reftek</div>
+                <div class="col-3 align-items-center">
+                    <div class="align-items-center">
+                        <span class="mr-5">Reftek</span>
+                        <span class="icon-start mr-3" v-if="(hovering === 1) && !checked"><i class="mdi mdi-24px mdi-star"></i></span>
+                        <span class="mr-3" v-if="(hovering === 1) && !checked"><i class="mdi mdi-24px mdi-pencil-outline"></i></span>
+                        <span class="mr-3" v-if="(hovering === 1) && !checked"><i class="mdi mdi-24px mdi-dots-vertical"></i></span>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- <div class="row">
@@ -59,23 +66,32 @@ export default {
             hovering: 0,
             checked: false,
             selectedColor: 'white',
+            selectedBorder: '',
         }
     },
     methods: {
         selection() {
             this.hovering = 1;
+            this.selectedColor = 'whitesmoke';
             this.img = '';
         },
         revertToNormal() {
             // this.hovering = 0;
             // this.img = 'https://www.placehold.it/300'
+            
+            if(!this.checked){
+                this.hovering = 0
+                this.img = 'https://www.placehold.it/300'
+                this.selectedColor = 'white';
+            }
         },
         selected() {
             this.checked = !this.checked;
             this.selectedColor = 'whitesmoke';
-            
+            this.selectedBorder = '3px solid #1a73e8';
         },
         selectedDiv() {
+            this.img = ''
             this.checked = !this.checked;
             
         }
@@ -89,7 +105,7 @@ export default {
             }
         },
         hovering(){
-            
+
         }
     }
 }
@@ -103,6 +119,10 @@ export default {
     height: 48px;
     border-radius: 50%;
     background-repeat: no-repeat;
+}
+
+.icon-start{
+    margin-left: 120px;
 }
 
 .checkbox{
@@ -150,6 +170,10 @@ export default {
         }
         &:focus{
             background: whitesmoke;
+        }
+
+        .mdi-star::before, .mdi-check-box-outline::before{
+            color: #1a73e8;
         }
     }
 }

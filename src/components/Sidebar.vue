@@ -2,7 +2,7 @@
     <div id="sidebar" class="sidebar">
         <div class="row">
             <div class="col-10">
-                <div class="btn btn-white ml-2 mt-1 mb-3 p-2">
+                <div class="btn btn-white ml-2 mt-1 mb-3 p-2" @click="navigateToCreateContact">
                     <div class="row align-items-center">
                         <div class="col-1">
                             <svg width="36" height="36" viewBox="0 0 36 36">
@@ -23,7 +23,7 @@
         <hr>
         <div class="row">
             <div class="col">
-                <router-link tag="div" class="nav-side-link py-2" active-class="active" to="/" exact>
+                <router-link tag="div" class="nav-side-link py-2" active-class="active" :to="{name: 'contact'}" exact>
                     <div class="row align-items-center">
                         <div class="col-1">
                             <i class="mdi mdi-account-outline icon-grey mr-5"></i>
@@ -39,7 +39,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <router-link tag="div" class="nav-side-link py-2" active-class="active" to="/frequent" exact>
+                <router-link tag="div" class="nav-side-link py-2" active-class="active" :to="{name: 'frequent'}" exact>
                     <div class="row align-items-center">
                         <div class="col-1">
                             <i class="mdi mdi-history icon-grey mr-5"></i>
@@ -55,26 +55,10 @@
         </div>
         <div class="row">
             <div class="col">
-                <router-link tag="div" class="nav-side-link py-2" to="/">
+                <router-link tag="div" class="nav-side-link py-2" active-class="active" :to="{name: 'trash'}">
                     <div class="row align-items-center">
                         <div class="col-1">
-                            <i class="mdi mdi-history icon-grey mr-5"></i>
-                        </div>
-                        <div class="col">
-                            <div class="pt-1 pl-3">
-                                Deleted Contacts
-                            </div>
-                        </div>
-                    </div>       
-                </router-link>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <router-link tag="div" class="nav-side-link py-2" to="/">
-                    <div class="row align-items-center">
-                        <div class="col-1">
-                            <i class="mdi mdi-history icon-grey mr-5"></i>
+                            <i class="mdi mdi-trash-can-outline icon-grey mr-5"></i>
                         </div>
                         <div class="col">
                             <div class="pt-1 pl-3">
@@ -94,6 +78,11 @@ export default {
     computed: {
         isSidebarVisible() {
             return this.$store.getters.getSidebarStatus
+        }
+    },
+    methods: {
+        navigateToCreateContact() {
+            return this.$router.push({name: 'create.contact'})
         }
     }
 }
@@ -147,9 +136,7 @@ hr{
 #sidebar {
         min-width: 280px;
         min-height: 100vh;
-        // margin-right: 50px;
-        // display: flex;
-        // flex-direction: column;
+
         .nav-side-link {
             padding-left: 30px;
             font-weight: 500;

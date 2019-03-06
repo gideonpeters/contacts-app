@@ -83,6 +83,7 @@ export default {
     min-width: 44px;
     cursor: pointer;
     margin-left: -50px;
+    z-index: 10;
 }
 
 .contact-brand{   
