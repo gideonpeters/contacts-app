@@ -1,7 +1,7 @@
 <template>
     <div id="sidebar" class="sidebar">
         <div class="row">
-            <div class="col-10">
+            <div class="col-10 d-none d-md-block">
                 <div class="btn btn-white ml-2 mt-1 mb-3 p-2" @click="navigateToCreateContact">
                     <div class="row align-items-center">
                         <div class="col-1">
@@ -30,7 +30,7 @@
                         </div>
                         <div class="col">
                             <div class="pt-1 pl-3">
-                                Contacts
+                                Contacts <span class="ml-5 pl-5">{{ numberOfContacts }}</span>
                             </div>  
                         </div>
                     </div>   
@@ -78,6 +78,9 @@ export default {
     computed: {
         isSidebarVisible() {
             return this.$store.getters.getSidebarStatus
+        },
+        numberOfContacts() {
+            return this.$store.getters.getContacts.length;
         }
     },
     methods: {

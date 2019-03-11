@@ -1,12 +1,12 @@
 <template>
     <div class="page-wrapped">
-        <div class="row justify-content-center">
+        <div class="row">
             <transition name="">
                 <div class="col-lg-2 col-md-4" v-show="isSidebarVisible"> 
                     <sidebar />
                 </div>
             </transition>
-            <div class="col-lg-10 col-md-6">
+            <div class="col-lg-10 col-md-8">
                 <div class="pl-3 pr-5">
                     <router-view />
                 </div> 
@@ -20,12 +20,12 @@
 
 <script>
 import Sidebar from './Sidebar.vue';
-import CreateContact from './CreateContact.vue'
+// import CreateContact from './CreateContact.vue'
 
 export default {
     components: {
         Sidebar,
-        CreateContact,
+        // CreateContact,
     },
     computed: {
         isSidebarVisible() {

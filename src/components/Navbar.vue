@@ -16,7 +16,7 @@
                 <div class="col-md-4 col-sm-3">
                     <div class="form-group has-search ml-4">
                         <i class="mdi mdi-magnify form-control-feedback ml-2"></i>
-                        <input type="text" class="form-control py-4 mt-3 d-none d-md-block"  placeholder="Search">
+                        <input type="text" class="form-control py-4 mt-3 d-none d-md-block"  placeholder="Search" v-model="searchInput" @input="search">
                     </div>
                 </div>
             </div>
@@ -26,9 +26,38 @@
 
 <script>
 export default {
+    data() {
+        return {
+            searchInput: '',
+        }
+    },
+    computed: {
+        searchedContacts(){
+            if(this.searchInput == ''){
+                // this.isSearchEmpty =false;
+                return this.contacts;
+            } else {
+                let matchedContacts = [];
+                this.contacts.forEach(contact => {
+                    let name = contact.name.toLowerCase();
+                    let input = contact.name.toLowerCase();
+
+                    if(name.search(input) > -1){
+                        matchedContacts.push(contact);
+                    }
+                    
+                    
+                });
+                return matchedContacts;
+            }
+        }
+    },
     methods: {
         toggleSidebar() {
             this.$store.commit('toggleSidebarStatus')
+        },
+        search() {
+            this.$store.commit('searchContacts', this.searchInput)
         }
     }
 }
@@ -41,6 +70,7 @@ export default {
         font-size: 24px;
         opacity: 0.56;
         z-index: 200;
+        cursor: pointer;
     }
 }
 

@@ -1,22 +1,23 @@
 <template>
     <div>
-        <contact-table :contactInfo="allContacts"/> 
+        <!-- <contact-table :contact="conta"/>  -->
+        <h1>Hlooooooooooo</h1>
     </div>
 </template>
 
 <script>
-import ContactTable from './Table.vue';
+// import ContactTable from './ContactTable.vue';
 
-export default {
-    components: {
-        ContactTable,
-    },
-    computed: {
-        allContacts() {
-            return this.$store.getters.getContacts
-        }
-    }
-}
+// export default {
+//     components: {
+//         ContactTable,
+//     },
+//     computed: {
+//         allContacts() {
+//             return this.$store.getters.getContacts
+//         }
+//     }
+// }
 </script>
 
 

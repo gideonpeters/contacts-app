@@ -2,7 +2,8 @@ export const contacts = [
     {
       id: 0,
       picture: "http://placehold.it/32x32",
-      age: 22,
+      jobTitle: 'Mr.',
+      note: 'A wonderful colleague',
       name: "Stevens Gomez",
       company: "GLOBOIL",
       email: "stevensgomez@globoil.com",
@@ -13,7 +14,8 @@ export const contacts = [
     {
       id: 1,
       picture: "http://placehold.it/32x32",
-      age: 25,
+      jobTitle: 'Mr.',
+      note: 'A wonderful colleague',
       name: "Janna Maldonado",
       company: "MENBRAIN",
       email: "jannamaldonado@menbrain.com",
@@ -24,7 +26,8 @@ export const contacts = [
     {
       id: 2,
       picture: "http://placehold.it/32x32",
-      age: 32,
+      jobTitle: 'Mr.',
+      note: 'A wonderful colleague',
       name: "Newton Villarreal",
       company: "GEEKKO",
       email: "newtonvillarreal@geekko.com",
@@ -35,7 +38,8 @@ export const contacts = [
     {
       id: 3,
       picture: "http://placehold.it/32x32",
-      age: 21,
+      jobTitle: 'Mr.',
+      note: 'A wonderful colleague',
       name: "Kim Kennedy",
       company: "QUADEEBO",
       email: "kimkennedy@quadeebo.com",
@@ -46,7 +50,8 @@ export const contacts = [
     {
       id: 4,
       picture: "http://placehold.it/32x32",
-      age: 20,
+      jobTitle: 'Mr.',
+      note: 'A wonderful colleague',
       name: "Huffman Nichols",
       company: "ACUSAGE",
       email: "huffmannichols@acusage.com",
