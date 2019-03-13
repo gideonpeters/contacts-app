@@ -5,87 +5,86 @@
                 <div class="py-3 pl-5 title">Create new Contact</div>
             </div>
         </div>
-        <div class="row align-items-center mt-3">
-            <div class="col-2">
-                <div class="pl-5"><i class="mdi mdi-account-circle icon-grey"></i></div>
-            </div>
-            <div class="col-3">
-                <div>
-                    <label >
-                        <span :id="firstNameFilled" v-show="firstNameSelected"> First Name </span>
-                    </label>
-                    <input class="form-control" type="text" placeholder="First Name" v-model="firstName" @focus="doThis('firstNameField')" @blur="doThat('firstNameField')">
-                </div>
-            </div>
-            <div class="col-3">
-                <div>
-                    <label for="">
-                        <span :id="lastNameFilled" v-show="lastNameSelected">Last Name</span>
-                    </label>
-                    <input class="form-control" type="text" placeholder="Last Name" v-model="lastName" @focus="doThis('lastNameField')" @blur="doThat('lastNameField')">
-                </div>
-            </div>
-        </div>
-        <div class="row align-items-center mt-3">
-            <div class="col-2">
-                <div class="pl-5 ml-4"><i class="mdi mdi-36px mdi-domain mdi-dark"></i></div>
-            </div>
-            <div class="col-3">
-                <div>
-                    <label for="">
-                        <span :id="companyFilled" v-show="companySelected">Company</span>
-                    </label>
-                    <input class="form-control" type="text" placeholder="Company" v-model="company" @focus="doThis('companyField')" @blur="doThat('companyField')">
-                </div>
-            </div>
-            <div class="col-3">
-                <div>
-                    <label for="">
-                        <span :id="jobTitleFilled" v-show="jobTitleSelected">Job Title</span>
-                    </label>
-                    <input class="form-control" type="text" placeholder="Job Title" v-model="jobTitle" @focus="doThis('jobTitleField')" @blur="doThat('jobTitleField')">
-                </div>
-            </div>
-        </div>
-        <div class="row align-items-center mt-5">
-            <div class="col-2">
-                <div class="pl-5 ml-4"><i class="mdi mdi-36px mdi-email-outline mdi-dark"></i></div>
-            </div>
-            <div class="col-6">
-                <div>
-                    <label for="">
-                        <span :id="emailFilled" v-show="emailSelected">Email</span>
-                    </label>
-                    <input class="form-control" type="text" placeholder="Email" v-model="email" @focus="doThis('emailField')" @blur="doThat('emailField')">
-                </div>
-            </div>
-        </div>
-        <div class="row align-items-center mt-5">
-            <div class="col-2">
-                <div class="pl-5 ml-4"><i class="mdi mdi-36px mdi-phone-outline mdi-dark"></i></div>
-            </div>
-            <div class="col-6">
-                <div>
-                    <label for="">
-                        <span :id="phoneFilled" v-show="phoneSelected">Phone</span>
-                    </label>
-                    <input class="form-control" type="text" placeholder="Phone" v-model="phone" @focus="doThis('phoneField')" @blur="doThat('phoneField')">
-                </div>
-            </div>
-        </div>
-        <div class="row align-items-center mt-5">
-            <div class="col-2">
-                <div class="pl-5 ml-4"><i class="mdi mdi-36px mdi-dark mdi-note-outline"></i></div>
-            </div>
-            <div class="col-6">
-                <div>
-                    <label for="">
-                        <span :id="noteFilled" v-show="noteSelected">Notes</span>
-                    </label>
-                    <input class="form-control" type="text" placeholder="Notes" v-model="note" @focus="doThis('noteField')" @blur="doThat('noteField')">
-                </div>
-            </div>
-        </div>
+        <v-app class="bg-white mt-3">
+            <v-form>
+                <v-container>
+                    <v-layout row wrap align-items-center>
+                        <v-flex xs2 sm2 md1>
+                            <div @click="launchFilePicker">
+                                <i class="mdi mdi-60px mdi-account-circle mdi-dark" @mouseover="showCamera" @mouseout="hideCamera"></i>
+                            </div>
+                            <div v-if="isHovered" class="camera position-absolute text-center"><i class="mdi mdi-24px mdi-camera-outline"></i></div>
+                            <input type="file"
+                                    ref="file"
+                                    :name="uploadFieldName"
+                                    @change="onFileChange($event.target.name, $event.target.files)"
+                                    style="display:none">
+                        </v-flex>
+                        <v-flex xs12 sm5 md3>
+                            <v-text-field v-model="firstName" label="First Name"></v-text-field>
+                        </v-flex>
+                        <v-flex xs12 sm5 md3>
+                            <v-text-field v-model="lastName" label="Last Name"></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row wrap align-items-center>
+                        <v-flex xs2 sm2 md1>
+                            <div><i class="mdi mdi-36px mdi-domain mdi-dark"></i></div>
+                        </v-flex>
+                        <v-flex xs12 sm5 md3>
+                            <v-text-field v-model="company" label="Company"></v-text-field>
+                        </v-flex>
+                        <v-flex xs12 sm5 md3>
+                            <v-text-field v-model="jobTitle" label="Job Title"></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row wrap align-items-center>
+                        <v-flex xs2 sm2 md1>
+                            <div><i class="mdi mdi-36px mdi-email-outline mdi-dark"></i></div>
+                        </v-flex>
+                        <v-flex xs10 sm10 md6>
+                            <v-text-field v-model="email" label="Email"></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row wrap align-items-center style="min-width: 250px">
+                        <v-flex xs2 sm2 md1>
+                            <div><i class="mdi mdi-36px mdi-phone-outline mdi-dark"></i></div>
+                        </v-flex>
+                        <v-flex xs12 sm10 md1 d-flex>
+                            <v-select single-line append-icon :items="countries" return-object item-text="name">
+                                <template slot="selection" slot-scope="data">
+                                    <div class="" style="color: black"> 
+                                        <img style="width: 40px;" class="hint-flag" :src="data.item.flag"> 
+                                    </div>
+                                </template>
+
+                                <template slot="item" slot-scope="data">
+                                    <v-list-tile-content class="px-3">
+                                        <v-list-tile-title v-html="data.item.name"></v-list-tile-title>
+                                        <v-list-tile-sub-title v-html="data.item.dialCode"></v-list-tile-sub-title>
+                                    </v-list-tile-content>
+                                    <div>
+                                        <img style="width: 25px" :src="data.item.flag">
+                                    </div>
+                                </template>
+                            </v-select>
+                        </v-flex>
+                        <v-flex xs7 md5>
+                            <v-text-field v-model="phone" label="Phone" type="tel"></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row wrap align-items-center>
+                        <v-flex xs2 sm2 md1>
+                            <div><i class="mdi mdi-36px mdi-note-outline mdi-dark"></i></div>
+                        </v-flex>
+                        <v-flex xs10 sm10 md6>
+                            <v-text-field v-model="note" label="Notes"></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-form>
+        </v-app>
+        
         <div class="row mt-5 utility-bar py-3">
             <div class="col-6">
                 <div class="pl-5 ml-4 option-text">More Fields</div>
@@ -104,6 +103,7 @@
 export default {
     data() {
         return {
+            img: 'https://www.placehold.it/300',
             firstName: '',
             lastName: '',
             company: '',
@@ -111,139 +111,20 @@ export default {
             email: '',
             phone: '',
             note: '',
-            firstNameSelected: false,
-            lastNameSelected: false,
-            companySelected: false,
-            jobTitleSelected: false,
-            emailSelected: false,
-            phoneSelected: false,
-            noteSelected: false,
-            firstNameFilled: 'firstNameFilled',
-            lastNameFilled: 'firstNameFilled',
-            companyFilled: 'firstNameFilled',
-            jobTitleFilled: 'firstNameFilled',
-            emailFilled: 'firstNameFilled',
-            phoneFilled: 'firstNameFilled',
-            noteFilled: 'firstNameFilled',
+            countries: this.$store.getters.getCountries,
+            uploadFieldName: 'file',
+            maxSize: 1024,
+            errorDialog: null,
+            errorText: '',
+            isHovered: false,
         }
     },
+    computed: {
+        // countries() {
+        //     return this.$store.getters.getCountries;
+        // }
+    },
     methods: {
-        showLabel(field){
-            switch (field) {
-                case 'firstNameField':
-                    this.firstNameSelected = !this.firstNameSelected
-                    break;
-                case 'lastNameField':
-                    this.lastNameSelected = !this.lastNameSelected
-                    break;
-                case 'companyField':
-                    this.companySelected = !this.companySelected
-                    break;
-                case 'jobTitleField':
-                    this.jobTitleSelected = !this.jobTitleSelected
-                    break;
-                case 'emailField':
-                    this.emailSelected = !this.emailSelected
-                    break;
-                case 'phoneField':
-                    this.phoneSelected = !this.phoneSelected
-                    break;
-                case 'noteField':
-                    this.noteSelected = !this.noteSelected
-                    break;
-                default:
-                    var x = 0; x + 1;
-            }
-        },
-        doThis(field) { 
-            switch (field) {
-                case 'firstNameField':
-                    this.firstNameFilled = 'firstNameFilled'
-                    this.firstNameSelected = true
-                    break;
-                case 'lastNameField':
-                    this.lastNameFilled = 'firstNameFilled'
-                    this.lastNameSelected = true
-                    break;
-                case 'companyField':
-                    this.companyFilled = 'firstNameFilled'
-                    this.companySelected = true
-                    break;
-                case 'jobTitleField':
-                    this.jobTitleFilled = 'firstNameFilled'
-                    this.jobTitleSelected = true
-                    break;
-                case 'emailField':
-                    this.emailFilled = 'firstNameFilled'
-                    this.emailSelected = true
-                    break;
-                case 'phoneField':
-                    this.phoneFilled = 'firstNameFilled'
-                    this.phoneSelected = true
-                    break;
-                case 'noteField':
-                    this.noteFilled = 'firstNameFilled'
-                    this.noteSelected = true
-                    break;
-                default:
-                    var x = 0; x + 1;
-            }   
-        },
-        doThat(field) {
-            switch (field) {
-                case 'firstNameField':
-                    if(this.firstName){
-                        this.firstNameFilled = 'filledField'
-                    } else if(!this.firstName) {
-                        this.firstNameSelected = false
-                    }
-                    break;
-                case 'lastNameField':
-                    if(this.lastName){
-                        this.lastNameFilled = 'filledField'
-                    } else if(!this.lastName) {
-                        this.lastNameSelected = false
-                    }
-                    break;
-                case 'companyField':
-                    if(this.company){
-                        this.companyFilled = 'filledField'
-                    } else if(!this.company) {
-                        this.companySelected = false
-                    }
-                    break;
-                case 'jobTitleField':
-                    if(this.jobTitle){
-                        this.jobTitleFilled = 'filledField'
-                    } else if(!this.jobTitle) {
-                        this.jobTitleSelected = false
-                    }
-                    break;
-                case 'emailField':
-                    if(this.email){
-                        this.emailFilled = 'filledField'
-                    } else if(!this.email) {
-                        this.emailSelected = false
-                    }
-                    break;
-                case 'phoneField':
-                    if(this.phone){
-                        this.phoneFilled = 'filledField'
-                    } else if(!this.phone) {
-                        this.phoneSelected = false
-                    }
-                    break;
-                case 'noteField':
-                    if(this.note){
-                        this.noteFilled = 'filledField'
-                    } else if(!this.note) {
-                        this.noteSelected = false
-                    }
-                    break;
-                default:
-                    var x = 0; x + 1;
-            }
-        },
         clearForm(){
             this.firstName = ''
             this.lastName = ''
@@ -265,6 +146,41 @@ export default {
 
             this.$store.dispatch('saveNewContact', body)
             this.$router.push({ name: 'contact' })
+        },
+        launchFilePicker(){
+            this.$refs.file.click();
+        },
+        onFileChange(fieldName, file) {
+            const { maxSize } = this
+            let imageFile = file[0] 
+    
+            //check if user actually selected a file
+            if (file.length > 0) {
+                let size = imageFile.size / maxSize / maxSize
+
+                if (!imageFile.type.match('image.*')) {
+                    // check whether the upload is an image
+                    this.errorDialog = true
+                    this.errorText = 'Please choose an image file'
+                } else if (size > 1) {
+                    // check whether the size is greater than the size limit
+                    this.errorDialog = true
+                    this.errorText = 'Your file is too big! Please select an image under 1MB'
+                } else {
+                    // Append file into FormData & turn file into image URL
+                    let formData = new FormData()
+                    let imageURL = URL.createObjectURL(imageFile)
+                    formData.append(fieldName, imageFile)
+                    // Emit FormData & image URL to the parent component
+                    this.$emit('input', { formData, imageURL })
+                }
+            }
+        },
+        showCamera() {
+            this.isHovered = true;
+        },
+        hideCamera() {
+            this.isHovered = false;
         }
     },
 }
@@ -274,7 +190,7 @@ export default {
 <style lang="scss" scoped>
 .create-contact{
     z-index: 1050;
-    color: black;
+    color: #1a73e8;
     min-width: 700px;
 
     .mdi-account-circle{
@@ -282,10 +198,20 @@ export default {
         cursor: pointer;
     }
 
+    .img{
+        background-position: center, center;
+        background-size: contain;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+    }
+
     .title{
         border-bottom: 0.5px solid lightgrey; 
         font-weight: bold;
         font-size: 1.1rem;
+        color: black;
     }
 
     .utility-bar{
@@ -329,5 +255,15 @@ export default {
             transition:  border-bottom 0.9s ease, border-color 0.6s ease;     
         }
     }
+}
+
+.mine{
+    margin-left: -200px;
+}
+
+.camera{
+    position: absolute;
+    top: 60px;
+    left: 50px;
 }
 </style>

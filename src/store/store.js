@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 // import createPersistedState from 'vuex-persistedstate'
-import { contacts } from './data.js'
+import { contacts } from './contacts.js'
+import  allCountries  from './countries.js'
 
 Vue.use(Vuex)
 
@@ -11,10 +12,11 @@ export const store = new Vuex.Store({
         sidebarStatus: true,
         searchInput: '',
         contacts: contacts,
+        countries: allCountries,
         selection: false,
         selectedContacts: [],
         deletedContacts: [],
-        showModal: true,
+        showModal: false,
     },
     getters: {
         getSidebarStatus(state) {
@@ -22,6 +24,9 @@ export const store = new Vuex.Store({
         },
         getShowModalStatus(state) {
             return state.showModal;
+        },
+        getCountries({countries}){
+            return countries;
         },
         getContacts(state) {
             return state.contacts;

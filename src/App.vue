@@ -1,20 +1,17 @@
 <template>
   <div id="app">
     <navbar />
-    <my-mask />
     <router-view />
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
-import Mask from './components/Mask.vue'
 
 export default {
   name: 'app',
   components: {
     Navbar,
-    'my-mask': Mask,
   }
 }
 </script>
